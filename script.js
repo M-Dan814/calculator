@@ -1,34 +1,19 @@
-const add = document.querySelector("#add");
-const sub = document.querySelector("#sub");
-const mul = document.querySelector("#mul");
-const div = document.querySelector("#div");
+const buttons = document.querySelectorAll(".ops");
 const display = document.querySelector(".display");
-const digits = document.querySelectorAll(".nums");
 const eq = document.querySelector("#equ");
+const clear = document.querySelector("#clear");
 
-digits.forEach((digit) =>
+buttons.forEach((digit) =>
   digit.addEventListener("click", (e) => {
-    if(display.textContent == "0"){
-        display.textContent = "";
+    if (display.textContent == "0") {
+      display.textContent = "";
     }
     display.textContent += e.target.value;
   })
 );
 
-add.addEventListener("click", () => {
-  display.textContent += " + ";
-});
-
-sub.addEventListener("click", () => {
-  display.textContent += " - ";
-});
-
-mul.addEventListener("click", () => {
-  display.textContent += " x ";
-});
-
-div.addEventListener("click", () => {
-  display.textContent += ` \u00f7 `;
+clear.addEventListener("click", () => {
+  display.textContent = "0";
 });
 
 function operate(Arr) {
@@ -37,7 +22,7 @@ function operate(Arr) {
   let secondOperand = 0;
   let result = 0;
   for (let i = 0; i < Arr.length; i++) {
-    if (Arr[i] == "x" || Arr[i] == "+" || Arr[i] == "-" || Arr[i] == "\u00f7") {
+    if (Arr[i] == "x" || Arr[i] == "+" || Arr[i] == "-" || Arr[i] == "/") {
       operator = Arr[i];
       firstOperand = Arr[i - 1];
       secondOperand = Arr[i + 1];
@@ -57,10 +42,11 @@ function operate(Arr) {
         let product = firstOperand * secondOperand;
         result += product;
         break;
-      case "\u00f7":
-        if(secondOperand == 0){
-            display.textContent = "";
-            display.textContent += "Oops! Can't divide by 0!"
+      case "/":
+        if (secondOperand == 0) {
+          display.textContent = "";
+          display.textContent += "lmao";
+          break;
         }
         let divResult = firstOperand / secondOperand;
         result += divResult;
@@ -75,7 +61,7 @@ eq.addEventListener("click", () => {
   const ops = display.textContent.split(" ");
 
   for (let i = 0; i < ops.length; i++) {
-    if (ops[i] == "x" || ops[i] == "+" || ops[i] == "-" || ops[i] == "\u00f7") {
+    if (ops[i] == "x" || ops[i] == "+" || ops[i] == "-" || ops[i] == "/") {
       continue;
     }
     ops[i] = parseInt(ops[i]);
