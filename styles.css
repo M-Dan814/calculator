@@ -3,23 +3,32 @@
   background-color: rgb(185, 199, 188);
   font-size: 48px;
   padding: 4px;
+  border-radius: 5px;
 }
 
 .buttons {
-  display: flex;
-  flex-wrap: wrap;
+  width: 100%;
+  display: inline-grid;
+  grid-template-columns: repeat(4, 85px);
+  grid-auto-rows: minmax(75px, auto);
   gap: 8px;
-  margin-left: 4px;
+  margin-left: 25px;
+}
+
+#clear {
+  grid-column: span 4;
 }
 
 .btn {
   height: 75px;
-  width: 80px;
+
   font-size: 32px;
   background-color: rgb(56, 55, 55);
   color: white;
   border-radius: 4px;
 }
+
+
 
 .btn:hover {
     cursor: pointer;
@@ -32,7 +41,7 @@
   flex-direction: column;
   gap: 12px;
   background-color: rgb(100, 99, 98);
-  width: 50vw;
+  width: 425px;
   margin: auto;
   padding: 10px;
   border-radius: 9px;
