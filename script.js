@@ -17,39 +17,31 @@ clear.addEventListener("click", () => {
 });
 
 function operate(Arr) {
-  let operator = "";
-  let firstOperand = 0;
-  let secondOperand = 0;
   let result = 0;
   for (let i = 0; i < Arr.length; i++) {
-    if (Arr[i] == "x" || Arr[i] == "+" || Arr[i] == "-" || Arr[i] == "/") {
-      operator = Arr[i];
-      firstOperand = Arr[i - 1];
-      secondOperand = Arr[i + 1];
-    } else {
-      continue;
-    }
-    switch (operator) {
+    switch (Arr[i]) {
       case "+":
-        let addResult = firstOperand + secondOperand;
-        result += addResult;
+        result = Arr[i - 1] + Arr[i + 1];
+        Arr[i + 1] = result;
         break;
       case "-":
-        let subResult = firstOperand - secondOperand;
-        result += subResult;
+        result = Arr[i - 1] - Arr[i + 1];
+        Arr[i + 1] = result;
         break;
       case "x":
-        let product = firstOperand * secondOperand;
-        result += product;
+        result = Arr[i - 1] * Arr[i + 1];
+        Arr[i + 1] = result;
         break;
       case "/":
-        if (secondOperand == 0) {
+        if (Arr[i + 1] == 0) {
           display.textContent = "";
-          display.textContent += "lmao";
+          display.textContent = "lmao";
           break;
         }
-        let divResult = firstOperand / secondOperand;
-        result += divResult;
+        result = Arr[i - 1] / Arr[i + 1];
+        Arr[i + 1] = result
+        break;
+      default:
         break;
     }
   }
@@ -57,15 +49,21 @@ function operate(Arr) {
   display.textContent += result;
 }
 
-eq.addEventListener("click", () => {
-  const ops = display.textContent.split(" ");
-
-  for (let i = 0; i < ops.length; i++) {
-    if (ops[i] == "x" || ops[i] == "+" || ops[i] == "-" || ops[i] == "/") {
+function parseArray(Arr) {
+  for (let i = 0; i < Arr.length; i++) {
+    if (Arr[i] == "x" || Arr[i] == "+" || Arr[i] == "-" || Arr[i] == "/") {
       continue;
     }
-    ops[i] = parseInt(ops[i]);
+    Arr[i] = parseInt(Arr[i]);
   }
+  return Arr;
+}
+
+eq.addEventListener("click", () => {
+  let ops = display.textContent.split(" ");
+
+  ops = parseArray(ops);
+
   operate(ops);
   console.log(ops);
 });

@@ -4,6 +4,7 @@
   font-size: 48px;
   padding: 4px;
   border-radius: 5px;
+  overflow: hidden;
 }
 
 .buttons {
@@ -13,6 +14,10 @@
   grid-auto-rows: minmax(75px, auto);
   gap: 8px;
   margin-left: 25px;
+}
+
+#equ {
+  background-color: coral;
 }
 
 #clear {
@@ -28,12 +33,14 @@
   border-radius: 4px;
 }
 
-
+.op {
+  background-color: cornflowerblue;
+}
 
 .btn:hover {
-    cursor: pointer;
-    background-color: white;
-    color: black;
+  cursor: pointer;
+  background-color: white;
+  color: black;
 }
 
 .container {
