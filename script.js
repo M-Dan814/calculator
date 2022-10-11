@@ -1,22 +1,30 @@
-const buttons = document.querySelectorAll(".ops");
+const digits = document.querySelectorAll(".ops");
 const operators = document.querySelectorAll(".op");
 const display = document.querySelector(".display");
 const eq = document.querySelector("#equ");
 const clear = document.querySelector("#clear");
 const del = document.querySelector("#del");
-
-buttons.forEach((button) =>
-  button.addEventListener("click", (e) => {
+let result = 0;
+digits.forEach((digit) =>
+  digit.addEventListener("click", (e) => {
     if (display.textContent == "0") {
       display.textContent = "";
+      display.textContent += e.target.value;
     }
+    else if(result != 0){
+      display.textContent = e.target.value
+      result = 0;
+    }
+    else{
     display.textContent += e.target.value;
+    }
   })
 );
 
 operators.forEach((operator) =>
   operator.addEventListener("click", (e) => {
     display.textContent += e.target.value;
+    result = 0;
   })
 );
 
@@ -25,14 +33,18 @@ clear.addEventListener("click", () => {
 });
 
 del.addEventListener("click", () => {
+  if(display.textContent.charAt(display.textContent.length - 1) == " "){
+    display.textContent = display.textContent.slice(0, -3)
+  }
+  else{
   display.textContent = display.textContent.slice(0, -1)
+  }
   if(display.textContent == ""){
     display.textContent = "0";
   }
 })
 
 function operate(Arr) {
-  let result = 0;
   for (let i = 0; i < Arr.length; i++) {
     switch (Arr[i]) {
       case "+":
