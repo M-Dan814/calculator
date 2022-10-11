@@ -20,6 +20,11 @@
   background-color: coral;
 }
 
+#equ:hover{
+  background-color: red;
+  color: white;
+}
+
 #clear {
   grid-column: span 3;
 }
@@ -52,4 +57,5 @@
   margin: auto;
   padding: 10px;
   border-radius: 9px;
+  margin-top: 20vh;
 }
